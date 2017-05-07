@@ -1,0 +1,82 @@
+<script type="text/ng-template" id="alert.html">
+    <div class="alert" style="background-color:#fa39c3;color:white" role="alert">
+      <div ng-transclude></div>
+    </div>
+  </script>
+
+
+
+
+<div class="container">
+<div class="col-md-offset-1 col-md-10">
+    <div class="form-area">
+        <form role="form">
+        <br style="clear:both">
+                    <h3 style="margin-bottom: 25px; text-align: center;">Travel route</h3>
+                     <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+
+            <div class="form-group">
+            <input type="text" ng-model="Orgselected" ng-model-options="modelOptions" uib-typeahead="orgin for orgin in uniqueOrgNames | filter:$viewValue | limitTo:8" class="form-control" placeholder="From">
+          </div>
+          <div class="form-group">
+            <input type="text" ng-model="DestSelected" ng-model-options="modelOptions" uib-typeahead="destination for destination in uniqueDestNames | filter:$viewValue | limitTo:8" class="form-control" placeholder="To">
+          </div>
+
+      <div class="form-group">
+          <div class="btn-group">
+                  <label class="btn btn-info" ng-model="radioModel" uib-btn-radio="'Left'" style="margin-right:10px">Fastest</label>
+                  <label class="btn btn-info" ng-model="radioModel" uib-btn-radio="'Middle'">Cheapest</label>
+          </div>
+        </div>
+
+
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="search()" >Search</button>
+        <br style="clear:both">
+        </form>
+    </div>
+
+
+<br/><br/><br/><br/>
+
+
+<div class="list-group" >
+  <a class="list-group-item" ng-repeat="journey in finalList" style="padding: 18px 20px>
+    <h4 class="list-group-item-heading">
+        {{journey.departure}} <i class="glyphicon glyphicon-chevron-right" style="  font-size: 12px;
+  position: relative;
+  top: 0px;
+  opacity: 0.6;"></i> {{journey.arrival}}
+        <span style="float:right">
+          {{journey.cost1}}
+          <i class="glyphicon glyphicon-euro" style="font-size: 14px;
+  position: relative;
+  top: 0px;
+  opacity: 0.6;"></i></span>
+    </h4>
+    <p class="list-group-item-text">{{journey.transport}} {{journey.reference}} for {{journey.duration.h}}H:{{journey.duration.m}}M </p>
+  </a>
+</div>
+
+<div class="list-group" >
+  <a class="list-group-item">
+    <h4 class="list-group-item-heading">
+      <div class="row">
+          <span class="col-sm-4 text-center">Total</span>
+          <span class="col-sm-4 text-center">08h 30m</span>
+          <span class="col-sm-4 text-center">480  <i class="glyphicon glyphicon-euro" style="font-size: 14px;
+  position: relative;
+  top: 0px;
+  opacity: 0.6;"></i></span>
+      </div>
+
+    </h4>
+  </a>
+</div>
+
+
+</div>
+</div>
+
+
+
+</div>
